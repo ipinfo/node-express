@@ -1,0 +1,30 @@
+{
+    "name": "ipinfo-express",
+    "version": "1.0.0",
+    "description": "Official Node.js Express client library for IPinfo",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ipinfo/node-express.git"
+    },
+    "keywords": [
+        "IPinfo",
+        "Express",
+        "Node.js"
+    ],
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/ipinfo/node-express/issues"
+    },
+    "homepage": "https://ipinfo.io/",
+    "engines": {
+        "node": ">=10"
+    },
+    "dependencies": {
+        "node-ipinfo": "^2.0.1"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "prettier": "^2.2.1"
+    }
+}
