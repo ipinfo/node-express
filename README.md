@@ -25,14 +25,14 @@ yarn install ipinfo-express
 
 #### Usage
 
-```
+```javascript
 var ipinfo = require('ipinfo-express')
 ipinfo("token")
 ```
 
 #### Example
 
-```
+```javascript
 var express = require('express')
 var ipinfo = require('ipinfo-express')
 
