@@ -19,61 +19,35 @@ The free plan is limited to 50,000 requests per month, and doesn't include some 
 
 ```bash
 npm install ipinfo-express
-```
 
-or
-
-```bash
 yarn install ipinfo-express
 ```
 
-#### Quickstart
+#### Usage
 
-TODO
+```
+var ipinfo = require('ipinfo-express')
+ipinfo("token")
+```
 
-### Details Data
+#### Example
 
-TODO
+```
+var express = require('express')
+var ipinfo = require('ipinfo-express')
 
-#### Country Name
+app = express()
+app.use(ipinfo())
 
-TODO
+app.get('/', function (req, res) {
+    console.log(req.ipinfo)
+    res.send(req.ipinfo)
+})
 
-#### IP Address
-
-TODO
-
-#### Longitude and Latitude
-
-TODO
-
-#### Accessing all properties
-
-TODO
-
-### Authentication
-
-TODO
-
-### Caching
-
-TODO
-
-#### Modifying cache options
-
-TODO
-
-#### Using a different cache
-
-TODO
-
-### Internationalization
-
-TODO
-
-### Filtering
-
-TODO
+app.listen(3000, () => {
+    console.log(`Server is running`)
+})
+```
 
 ### Other Libraries
 
