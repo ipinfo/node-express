@@ -26,21 +26,17 @@ yarn install ipinfo-express
 #### Usage
 
 ```javascript
-var ipinfo = require('ipinfo-express')
-ipinfo("token")
-```
+const express = require('express')
+const ipinfo = require('ipinfo-express')
 
-#### Example
-
-```javascript
-var express = require('express')
-var ipinfo = require('ipinfo-express')
-
-app = express()
-app.use(ipinfo())
+const app = express()
+app.use(ipinfo({
+    token: "token",
+    cache: null,
+    timeout: 5000
+}))
 
 app.get('/', function (req, res) {
-    console.log(req.ipinfo)
     res.send(req.ipinfo)
 })
 

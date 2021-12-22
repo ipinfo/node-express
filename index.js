@@ -1,18 +1,9 @@
-var { IPinfoWrapper } = require('node-ipinfo');
+const { IPinfoWrapper } = require('node-ipinfo');
 
-module.exports = function (token) {
-    if (!token) {
-        token = ''
+module.exports = ({ token = '', cache, timeout }) => {
+    const ipinfo = new IPinfoWrapper(token, cache, timeout)
+    return async (req, _, next) => {
+        req.ipinfo = await ipinfo.lookupIp(req.ip);
+        next();
     }
-
-    let ipinfo = new IPinfoWrapper(token)
-
-    var middleware = function (req, res, next) {
-        ipinfo.lookupIp(req.ip).then((response) => {
-            req.ipinfo = response;
-            next();
-        });
-    }
-
-    return middleware
 }
