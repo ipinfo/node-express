@@ -15,7 +15,7 @@ You'll need an IPinfo API access token, which you can get by singing up for a fr
 
 The free plan is limited to 50,000 requests per month, and doesn't include some of the data fields such as IP type and company data. To enable all the data fields and additional request volumes see [https://ipinfo.io/pricing](https://ipinfo.io/pricing)
 
-#### Installation
+### Installation
 
 ```bash
 npm install ipinfo-express
@@ -23,7 +23,29 @@ npm install ipinfo-express
 yarn install ipinfo-express
 ```
 
-#### Usage
+### Usage
+
+The following is the interface of the middleware function.
+
+The `token` is the string token you get when registered with IPinfo.
+
+The `cache` key is the same as that described in
+https://github.com/ipinfo/node#caching.
+
+The `timeout` key is the same as that described in
+https://github.com/ipinfo/node#timeouts.
+
+```javascript
+ipinfo({
+    token: "<token>",
+    cache: <cache_class>,
+    timeout: 5000
+});
+```
+
+### Full Example
+
+The following is a full example of using the middleware function.
 
 ```javascript
 const express = require('express')
