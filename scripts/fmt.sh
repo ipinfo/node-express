@@ -8,7 +8,9 @@ ROOT=$DIR/..
 find \
     $ROOT/index.js \
     $ROOT/package.json \
+    $ROOT/test-app \
     -not \( -path $ROOT/node_modules -prune \) \
+    -not \( -path $ROOT/test-app/node_modules -prune \) \
     -name '*.js' -print0 \
     -or -name '*.ts' -print0 \
     -or -name '*.css' -print0 \
