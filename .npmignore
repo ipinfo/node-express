@@ -7,10 +7,14 @@
 .vscode
 .vim
 *.tgz
-*.ts
 jest.config.json
+jest.config.js
+config/
 node_modules/
 scratch.ts
 src/
 scripts/
 tsconfig.json
+Session.*.vim
+Session.vim
+test-app/
