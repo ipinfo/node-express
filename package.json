@@ -1,6 +1,6 @@
 {
     "name": "ipinfo-express",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Official Node.js Express client library for IPinfo",
     "main": "src/index.js",
     "repository": {
