@@ -14,3 +14,4 @@ module.exports = ({ token = "", cache, timeout, ipSelector }) => {
 };
 
 module.exports.defaultIPSelector = defaultIPSelector;
+module.exports.originatingIPSelector = require("./ip-selector/originating-ip-selector");
