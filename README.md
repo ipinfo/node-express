@@ -35,11 +35,14 @@ https://github.com/ipinfo/node#caching.
 The `timeout` key is the same as that described in
 https://github.com/ipinfo/node#timeouts.
 
+The `ipSelector` is the function which returns the selected IP.
+
 ```javascript
 ipinfo({
     token: "<token>",
     cache: <cache_class>,
-    timeout: 5000
+    timeout: 5000,
+    ipSelector: null
 });
 ```
 
@@ -55,7 +58,8 @@ const app = express()
 app.use(ipinfo({
     token: "token",
     cache: null,
-    timeout: 5000
+    timeout: 5000,
+    ipSelector: null
 }))
 
 app.get('/', function (req, res) {
@@ -65,6 +69,77 @@ app.get('/', function (req, res) {
 app.listen(3000, () => {
     console.log(`Server is running`)
 })
+```
+
+### IP Selection Mechanism
+
+By default, the IP from the incoming request object is used.
+
+Since the desired IP by your system may be in other locations, the IP selection mechanism is configurable and some alternative built-in options are available.
+
+#### Using built-in IP selectors
+
+- Default IP Selector
+- Originating IP Selector
+
+##### Default IP selector
+
+A [defaultIPSelector](https://github.com/ipinfo/node-express/blob/master/src/ip-selector/default-ip-selector.js) function is used by default if no IP selection method is provided. It returns the default IP from the incoming request object of Express.
+
+This selector can be set explicitly by setting the `ipSelector` while setting the middleware function.
+
+```javascript
+const ipinfo = require('ipinfo-express')
+const { defaultIPSelector } = require('ipinfo-express')
+
+const app = express()
+app.use(ipinfo({
+    token: "token",
+    cache: null,
+    timeout: 5000,
+    ipSelector: defaultIPSelector
+}))
+```
+
+##### Originating IP selector
+
+A [originatingIPSelector](https://github.com/ipinfo/node-express/blob/master/src/ip-selector/originating-ip-selector.js) selects an IP address by trying to extract it from the `X-Forwarded-For` header. This is not always the most reliable unless your proxy setup allows you to trust it. It will default to the source IP on the request if the header doesn't exist.
+
+This selector can be set by setting the `ipSelector` while setting the middleware function.
+
+```javascript
+const ipinfo = require('ipinfo-express')
+const { originatingIPSelector } = require('ipinfo-express')
+
+const app = express()
+app.use(ipinfo({
+    token: "token",
+    cache: null,
+    timeout: 5000,
+    ipSelector: originatingIPSelector
+}))
+```
+
+#### Using a custom IP selector
+
+In case a custom IP selector is required, you may set your custom function to `ipSelector`. Your custom function should take [req](https://expressjs.com/en/api.html#req) as an argument and return an IP in `string` format.
+
+For example:
+
+```javascript
+const ipinfo = require('ipinfo-express')
+
+const app = express()
+app.use(ipinfo({
+    token: "token",
+    cache: null,
+    timeout: 5000,
+    ipSelector: (req) => {
+        ip = ""
+        // update ip according to your logic and return the selected IP
+        return ip
+    }
+}))
 ```
 
 ### Other Libraries
