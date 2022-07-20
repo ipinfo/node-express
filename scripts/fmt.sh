@@ -6,7 +6,7 @@ ROOT=$DIR/..
 # Format code in project.
 
 find \
-    $ROOT/index.js \
+    $ROOT/src \
     $ROOT/package.json \
     $ROOT/test-app \
     -not \( -path $ROOT/node_modules -prune \) \
