@@ -122,7 +122,7 @@ app.use(ipinfo({
 
 #### Using a custom IP selector
 
-In case a custom IP selector is required, you may set your custom function to `ipSelector`. Your custom function should take [req](https://expressjs.com/en/api.html#req) as an argument and return IP in `string` format.
+In case a custom IP selector is required, you may set your custom function to `ipSelector`. Your custom function should take [req](https://expressjs.com/en/api.html#req) as an argument and return an IP in `string` format.
 
 For example:
 
