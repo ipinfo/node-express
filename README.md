@@ -35,7 +35,7 @@ https://github.com/ipinfo/node#caching.
 The `timeout` key is the same as that described in
 https://github.com/ipinfo/node#timeouts.
 
-The `ipSelector` is the function which returns the IP string.
+The `ipSelector` is the function which returns the selected IP.
 
 ```javascript
 ipinfo({
@@ -77,12 +77,12 @@ By default, the IP from the incoming request object is used.
 
 Since the desired IP by your system may be in other locations, the IP selection mechanism is configurable and some alternative built-in options are available.
 
-#### Using built-in ip selectors
+#### Using built-in IP selectors
 
 - Default IP Selector
 - Originating IP Selector
 
-##### Default IP Selector
+##### Default IP selector
 
 A [defaultIPSelector](https://github.com/ipinfo/node-express/blob/master/src/ip-selector/default-ip-selector.js) function is used by default if no IP selection method is provided. It returns the default IP from the incoming request object of Express.
 
@@ -101,7 +101,7 @@ app.use(ipinfo({
 }))
 ```
 
-##### Originating IP Selector
+##### Originating IP selector
 
 A [originatingIPSelector](https://github.com/ipinfo/node-express/blob/master/src/ip-selector/originating-ip-selector.js) selects an IP address by trying to extract it from the `X-Forwarded-For` header. This is not always the most reliable unless your proxy setup allows you to trust it. It will default to the source IP on the request if the header doesn't exist.
 
