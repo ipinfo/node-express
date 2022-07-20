@@ -1,5 +1,6 @@
 const { IPinfoWrapper } = require("node-ipinfo");
 const defaultIPSelector = require("./ip-selector/default-ip-selector");
+const originatingIPSelector = require("./ip-selector/originating-ip-selector");
 
 module.exports = ({ token = "", cache, timeout, ipSelector }) => {
     const ipinfo = new IPinfoWrapper(token, cache, timeout);
@@ -14,4 +15,4 @@ module.exports = ({ token = "", cache, timeout, ipSelector }) => {
 };
 
 module.exports.defaultIPSelector = defaultIPSelector;
-module.exports.originatingIPSelector = require("./ip-selector/originating-ip-selector");
+module.exports.originatingIPSelector = originatingIPSelector;
