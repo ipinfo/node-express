@@ -2,7 +2,7 @@
     "name": "test-app",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -10,6 +10,9 @@
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.2",
-        "ipinfo-express": "file:.."
+        "ipinfo-express": "file:..",
+        "node-ts": "^5.1.2",
+        "nodemon": "^2.0.22",
+        "ts-node": "^10.9.1"
     }
 }
