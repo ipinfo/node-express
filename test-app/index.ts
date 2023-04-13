@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(
   ipinfo({
-    token: "e701429c12dd94",
+    token: process.env.IPINFO_TOKEN,
     cache: null,
     timeout: 5000
   })

@@ -12,7 +12,6 @@
         "express": "^4.17.2",
         "ipinfo-express": "file:..",
         "node-ts": "^5.1.2",
-        "nodemon": "^2.0.22",
         "ts-node": "^10.9.1"
     }
 }
