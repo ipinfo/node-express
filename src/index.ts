@@ -1,4 +1,4 @@
-import { IPinfoWrapper } from "node-ipinfo";
+import { IPinfoWrapper, IPinfo } from "node-ipinfo";
 import defaultIPSelector from "./ip-selector/default-ip-selector";
 import originatingIPSelector from "./ip-selector/originating-ip-selector";
 
@@ -21,7 +21,8 @@ const ipinfoMiddleware = ({
     }
     return async (req: any, _: any, next: any) => {
         const ip = ipSelector?.(req) ?? defaultIPSelector(req);
-        req.ipinfo = await ipinfo.lookupIp(ip);
+        const ipInfo: IPinfo = await ipinfo.lookupIp(ip);
+        req.ipinfo = ipInfo;
         next();
     };
 };
