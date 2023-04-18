@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0
+
+- Refactored code to TypeScript.
+
 ## 1.1.0
 
 - Added support for a custom IP selector function.
