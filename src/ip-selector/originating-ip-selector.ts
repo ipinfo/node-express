@@ -1,4 +1,6 @@
-module.exports = (req) => {
+import { Request } from "express";
+
+const defaultIPSelector = (req: Request): string => {
     const xForwardedFor = req.header("x-forwarded-for");
     if (!xForwardedFor || xForwardedFor.trim() === "") {
         return req.ip;
@@ -7,3 +9,5 @@ module.exports = (req) => {
         return ips[0].trim();
     }
 };
+
+export default defaultIPSelector;

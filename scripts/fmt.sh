@@ -7,6 +7,7 @@ ROOT=$DIR/..
 
 find \
     $ROOT/src \
+    $ROOT/ipinfo-express.d.ts \
     $ROOT/package.json \
     $ROOT/test-app \
     -not \( -path $ROOT/node_modules -prune \) \
