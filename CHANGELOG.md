@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.2
+
+- Replaces invalid 2.0.1 tag.
+
 ## 2.0.1
 
 - Fixed build process to properly output JS.
