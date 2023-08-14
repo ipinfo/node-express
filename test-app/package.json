@@ -10,7 +10,7 @@
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.2",
-        "ipinfo-express": "^2.0.1",
+        "ipinfo-express": "^2.0.2",
         "node-ts": "^5.1.2",
         "ts-node": "^10.9.1"
     }
