@@ -17,10 +17,16 @@ The free plan is limited to 50,000 requests per month, and doesn't include some 
 
 ### Installation
 
+#### npm
+
 ```bash
 npm install ipinfo-express
+```
 
-yarn install ipinfo-express
+#### yarn
+
+```bash
+yarn add ipinfo-express
 ```
 
 ### Usage
