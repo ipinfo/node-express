@@ -1,6 +1,6 @@
 {
     "name": "ipinfo-express",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Official Node.js Express client library for IPinfo",
     "main": "src/index.ts",
     "repository": {
@@ -12,6 +12,13 @@
         "Express",
         "Node.js"
     ],
+    "prepublish": "tsc",
+    "scripts": {
+        "build": "tsc",
+        "tsc": "tsc --pretty --watch",
+        "test": "jest",
+        "test --watch": "jest --watchAll"
+    },
     "license": "Apache-2.0",
     "bugs": {
         "url": "https://github.com/ipinfo/node-express/issues"
@@ -21,14 +28,14 @@
         "node": ">=10"
     },
     "dependencies": {
-        "@types/node": "^18.15.11",
-        "node-ipinfo": "^3.0.2",
-        "ts-node": "^10.9.1"
+        "node-ipinfo": "^3.0.2"
     },
     "devDependencies": {
+        "@types/node": "^18.15.11",
         "@types/express": "^4.17.17",
         "dotenv": "^8.2.0",
         "prettier": "^2.2.1",
-        "typescript": "^5.0.4"
+        "typescript": "^5.0.4",
+        "ts-node": "^10.9.1"
     }
 }

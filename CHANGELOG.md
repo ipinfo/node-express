@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.1
+
+- Fixed build process to properly output JS.
+
 ## 2.0.0
 
 - Refactored code to TypeScript.
