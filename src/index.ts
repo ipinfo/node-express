@@ -6,7 +6,7 @@ type MiddlewareOptions = {
     token?: string;
     cache?: any;
     timeout?: number;
-    ipSelector?: (req: any) => string;
+    ipSelector?: (req: any) => string | undefined;
 };
 
 const ipinfoMiddleware = ({
@@ -21,8 +21,10 @@ const ipinfoMiddleware = ({
     }
     return async (req: any, _: any, next: any) => {
         const ip = ipSelector?.(req) ?? defaultIPSelector(req);
-        const ipInfo: IPinfo = await ipinfo.lookupIp(ip);
-        req.ipinfo = ipInfo;
+        if (ip) {
+            const ipInfo: IPinfo = await ipinfo.lookupIp(ip);
+            req.ipinfo = ipInfo;
+        }
         next();
     };
 };
