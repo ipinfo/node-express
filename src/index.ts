@@ -1,6 +1,8 @@
-import { IPinfoWrapper, IPinfo } from "node-ipinfo";
+import { IPinfoWrapper, IPinfo, IPinfoLiteWrapper } from "node-ipinfo";
 import defaultIPSelector from "./ip-selector/default-ip-selector";
 import originatingIPSelector from "./ip-selector/originating-ip-selector";
+import { IPinfoLite } from "node-ipinfo/dist/src/common";
+import { IPBogon } from "node-ipinfo/dist/src/common";
 
 type MiddlewareOptions = {
     token?: string;
@@ -29,5 +31,29 @@ const ipinfoMiddleware = ({
     };
 };
 
+const ipinfoLiteMiddleware = ({
+    token = "",
+    cache,
+    timeout,
+    ipSelector
+}: MiddlewareOptions = {}) => {
+    const ipinfo = new IPinfoLiteWrapper(token, cache, timeout);
+    if (ipSelector == null || typeof ipSelector !== "function") {
+        ipSelector = defaultIPSelector;
+    }
+    return async (req: any, _: any, next: any) => {
+        const ip = ipSelector?.(req) ?? defaultIPSelector(req);
+        if (ip) {
+            const ipInfo: IPinfoLite | IPBogon = await ipinfo.lookupIp(ip);
+            req.ipinfo = ipInfo;
+        }
+        next();
+    };
+};
+
 export default ipinfoMiddleware;
-export { defaultIPSelector, originatingIPSelector };
+export {
+    defaultIPSelector,
+    originatingIPSelector,
+    ipinfoLiteMiddleware as ipinfoLite
+};
