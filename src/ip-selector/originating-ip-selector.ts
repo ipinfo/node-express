@@ -1,6 +1,6 @@
 import { Request } from "express";
 
-const defaultIPSelector = (req: Request): string => {
+const defaultIPSelector = (req: Request): string | undefined => {
     const xForwardedFor = req.header("x-forwarded-for");
     if (!xForwardedFor || xForwardedFor.trim() === "") {
         return req.ip;
