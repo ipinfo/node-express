@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.1.0
+
+- Add support for Lite API
+
 ## 2.0.2
 
 - Replaces invalid 2.0.1 tag.
