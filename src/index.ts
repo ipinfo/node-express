@@ -11,7 +11,8 @@ import {
     IPinfoLite,
     IPinfoCore,
     IPinfoPlus,
-    IPBogon
+    IPBogon,
+    Resproxy
 } from "node-ipinfo/dist/src/common";
 
 type MiddlewareOptions = {
@@ -101,11 +102,32 @@ const ipinfoPlusMiddleware = ({
     };
 };
 
+const ipinfoResproxyMiddleware = ({
+    token = "",
+    cache,
+    timeout,
+    ipSelector
+}: MiddlewareOptions = {}) => {
+    const ipinfo = new IPinfoWrapper(token, cache, timeout);
+    if (ipSelector == null || typeof ipSelector !== "function") {
+        ipSelector = defaultIPSelector;
+    }
+    return async (req: any, _: any, next: any) => {
+        const ip = ipSelector?.(req) ?? defaultIPSelector(req);
+        if (ip) {
+            const resproxy: Resproxy = await ipinfo.lookupResproxy(ip);
+            req.ipinfo_resproxy = resproxy;
+        }
+        next();
+    };
+};
+
 export default ipinfoMiddleware;
 export {
     defaultIPSelector,
     originatingIPSelector,
     ipinfoLiteMiddleware as ipinfoLite,
     ipinfoCoreMiddleware as ipinfoCore,
-    ipinfoPlusMiddleware as ipinfoPlus
+    ipinfoPlusMiddleware as ipinfoPlus,
+    ipinfoResproxyMiddleware as ipinfoResproxy
 };
